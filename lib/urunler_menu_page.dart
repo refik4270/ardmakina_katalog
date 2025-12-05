@@ -1,10 +1,14 @@
 // lib/urunler_menu_page.dart - GÜNCEL KOD
 
 import 'package:flutter/material.dart';
-import 'main.dart'; 
-import 'triger_kasnaklar_page.dart'; 
-import 'disliler_page.dart'; 
+import 'main.dart';
+import 'triger_kasnaklar_page.dart';
+import 'disliler_page.dart';
+import 'kaplinler_page.dart';
 
+// ------------------------------------------------------------------
+// 📋 ÜRÜN LİSTESİ (TİCARİ ÖNCELİK SIRALAMASI)
+// ------------------------------------------------------------------
 const List<String> kUrunlerListesi = [
   'Triger Kasnaklar',
   'Kaplinler',
@@ -22,20 +26,31 @@ const List<String> kUrunlerListesi = [
   'Yataklı Rulmanlar',
 ];
 
+// ------------------------------------------------------------------
+// ⚙️ YÖNLENDİRME MANTIK (main.dart ile senkronize)
+// ------------------------------------------------------------------
+
 void _handleNavigation(BuildContext context, String title) {
-  if (title == 'Triger Kasnaklar' || title == 'Burçlu V Kasnaklar' || title == 'V Kasnaklar') {
+  if (title == 'Triger Kasnaklar' ||
+      title == 'Burçlu V Kasnaklar' ||
+      title == 'V Kasnaklar') {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const TrigerKasnaklarPage()), 
+      MaterialPageRoute(builder: (context) => const TrigerKasnaklarPage()),
     );
-  } 
-  else if (title == 'Pinyon Dişliler' || title == 'Kramayer Dişliler' || title == 'Zincir Dişliler') {
+  } else if (title == 'Pinyon Dişliler' ||
+      title == 'Kramayer Dişliler' ||
+      title == 'Zincir Dişliler') {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const DislilerPage()), 
+      MaterialPageRoute(builder: (context) => const DislilerPage()),
     );
-  } 
-  else {
+  } else if (title == 'Kaplinler') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const KaplinlerPage()),
+    );
+  } else {
     _showUnderConstruction(context, title);
   }
 }
@@ -50,6 +65,10 @@ void _showUnderConstruction(BuildContext context, String category) {
   );
 }
 
+// ------------------------------------------------------------------
+// 🛍️ ÜRÜNLER MENÜ SAYFASI
+// ------------------------------------------------------------------
+
 class UrunlerMenuPage extends StatelessWidget {
   const UrunlerMenuPage({super.key});
 
@@ -57,7 +76,8 @@ class UrunlerMenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TÜM ÜRÜN GRUPLARI', style: TextStyle(color: kBackgroundColor)),
+        title: const Text('TÜM ÜRÜN GRUPLARI',
+            style: TextStyle(color: kBackgroundColor)),
         backgroundColor: kPrimaryColor,
         iconTheme: const IconThemeData(color: kBackgroundColor),
       ),
@@ -75,7 +95,7 @@ class UrunlerMenuPage extends StatelessWidget {
       ),
     );
   }
-  
+
   Widget _buildCategoryButton(BuildContext context, String title) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
@@ -88,7 +108,7 @@ class UrunlerMenuPage extends StatelessWidget {
         elevation: 8,
       ),
       onPressed: () {
-        _handleNavigation(context, title); 
+        _handleNavigation(context, title);
       },
       child: Text(
         title,
