@@ -1,0 +1,25 @@
+# Flutter & Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+ios/Pods/
+ios/.symlinks/
+macos/Pods/
+macos/.symlinks/
+windows/flutter/
+linux/flutter/
+
+# VS Code
+.vscode/
+.idea/
+*.iml
+
+# Platform spesifik
+android/.gradle/
+android/local.properties
+*.log
+
+# Diğer
+*.lock
