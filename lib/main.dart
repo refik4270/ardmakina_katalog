@@ -8,15 +8,15 @@ import 'disliler_page.dart';
 import 'kurumsal_page.dart';
 import 'urunler_menu_page.dart';
 import 'iletisim_page.dart';
-import 'kaplinler_page.dart';
+import 'kaplinler_page.dart'; // 👈 YENİ: Kaplinler sayfası
 
 // ------------------------------------------------------------------
 // RENK PALETİ VE SABİT DEĞERLER
 // ------------------------------------------------------------------
 const Color kPrimaryColor = Color(0xFFC62828); // Koyu Kırmızı (Vurgu)
-const Color kAccentColor = Color(0xFF424242);  // Koyu Gri / Siyah
-const Color kBackgroundColor = Colors.white;   // Beyaz
-const Color kTextColor = Colors.black;        // Siyah Metin Rengi
+const Color kAccentColor = Color(0xFF424242); // Koyu Gri / Siyah
+const Color kBackgroundColor = Colors.white; // Beyaz
+const Color kTextColor = Colors.black; // Siyah Metin Rengi
 
 // 📞 KESİNLEŞMİŞ İLETİŞİM BİLGİLERİ
 const String kWebAddress = 'http://www.ardmakina.com';
@@ -47,7 +47,7 @@ class ArdMakinaApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: kPrimaryColor,
-        colorScheme: const ColorScheme.light(
+        colorScheme: ColorScheme.light(
           primary: kPrimaryColor,
           secondary: kAccentColor,
           background: kBackgroundColor,
@@ -166,10 +166,10 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               const Icon(Icons.campaign, color: kPrimaryColor),
               const SizedBox(width: 10),
-              const Flexible(
+              Flexible(
                 child: Text(
                   kCurrentAnnouncementTitle,
-                  style: TextStyle(color: kAccentColor),
+                  style: const TextStyle(color: kAccentColor),
                 ),
               ),
             ],
@@ -300,8 +300,7 @@ class _HomeScreenState extends State<HomeScreen> {
       title: Row(
         children: [
           Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
               color: kBackgroundColor,
               borderRadius: BorderRadius.circular(4),
@@ -359,27 +358,33 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _handleNavigation(BuildContext context, String title) {
+    // KASNAK GRUBU
     if (title == 'Triger Kasnaklar' ||
         title == 'Burçlu V Kasnaklar' ||
         title == 'V Kasnaklar') {
       Navigator.push(
         context,
-        MaterialPageRoute(
-            builder: (context) => const TrigerKasnaklarPage()),
+        MaterialPageRoute(builder: (context) => const TrigerKasnaklarPage()),
       );
-    } else if (title == 'Pinyon Dişliler' ||
+    }
+    // KAPLİNLER
+    else if (title == 'Kaplinler') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const KaplinlerPage()),
+      );
+    }
+    // DİŞLİ GRUBU
+    else if (title == 'Pinyon Dişliler' ||
         title == 'Kramayer Dişliler' ||
         title == 'Zincir Dişliler') {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const DislilerPage()),
       );
-    } else if (title == 'Kaplinler') {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const KaplinlerPage()),
-      );
-    } else {
+    }
+    // Diğer tüm ürünler
+    else {
       _showUnderConstruction(context, title);
     }
   }
@@ -460,11 +465,11 @@ class _MenuTitle extends StatelessWidget {
           homeState._showAction(context, '$title Sayfasına Git');
         }
       },
-      child: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.0),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Text(
-          'KURUMSAL',
-          style: TextStyle(
+          title,
+          style: const TextStyle(
             color: kBackgroundColor,
             fontWeight: FontWeight.w600,
             fontSize: 14,
