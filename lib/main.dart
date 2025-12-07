@@ -9,11 +9,10 @@ import 'kurumsal_page.dart';
 import 'urunler_menu_page.dart';
 import 'iletisim_page.dart';
 import 'kaplinler_page.dart';
-
-// 👇 1. EKLEME: MOTOR GERGİ RAYLARI İÇİN
 import 'motor_gergi_raylari_page.dart';
-// 👇 2. EKLEME: KONİK KİLİTLER İÇİN
 import 'konik_kilitler_page.dart';
+// 🔴 YENİ: BURÇLU V KASNAKLAR SAYFASI
+import 'burclu_v_kasnaklar_page.dart';
 
 // ------------------------------------------------------------------
 // RENK PALETİ VE SABİT DEĞERLER
@@ -364,11 +363,10 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // --- NAVİGASYON YÖNETİMİ ---
+    // --- NAVİGASYON YÖNETİMİ ---
   void _handleNavigation(BuildContext context, String title) {
-    // KASNAK GRUBU
+    // KASNAK GRUBU (TRİGER VE DÜZ V KASNAKLAR)
     if (title == 'Triger Kasnaklar' ||
-        title == 'Burçlu V Kasnaklar' ||
         title == 'V Kasnaklar') {
       Navigator.push(
         context,
@@ -398,11 +396,18 @@ class _HomeScreenState extends State<HomeScreen> {
         MaterialPageRoute(builder: (context) => const MotorGergiRaylariPage()),
       );
     }
-    // 🔴 YENİ: KONİK KİLİTLER
+    // KONİK KİLİTLER
     else if (title == 'Konik Kilitler') {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const KonikKilitlerPage()),
+      );
+    }
+    // 🔴 BURÇLU V KASNAKLAR – SPA/SPB/SPC/SPZ LİSTESİ BURAYA BAĞLI
+    else if (title == 'Burçlu V Kasnaklar') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const BurcluVKasnaklarPage()),
       );
     }
     // Diğer tüm ürünler (Henüz yapılmamış olanlar)
@@ -410,6 +415,7 @@ class _HomeScreenState extends State<HomeScreen> {
       _showUnderConstruction(context, title);
     }
   }
+
 
   Widget _buildCategoryButton(BuildContext context, String title) {
     return ElevatedButton(
