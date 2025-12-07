@@ -1,11 +1,14 @@
-// lib/urunler_menu_page.dart - SON VE KESİN BAĞLANTI VERSİYONU
+// lib/urunler_menu_page.dart
 
 import 'package:flutter/material.dart';
-import 'main.dart'; 
+import 'main.dart';
+
+// Ürün grup sayfaları
+import 'triger_kasnaklar_page.dart';
 import 'kaplinler_page.dart';
-import 'disliler_page.dart'; 
-// KRİTİK BAĞLANTI NOKTASI: Bu dosyanın adı doğru olmalı.
-import 'motor_gergi_raylari_page.dart'; 
+import 'disliler_page.dart';
+import 'motor_gergi_raylari_page.dart';
+import 'konik_kilitler_page.dart';
 
 class UrunlerMenuPage extends StatelessWidget {
   const UrunlerMenuPage({super.key});
@@ -14,7 +17,10 @@ class UrunlerMenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ÜRÜN KATEGORİLERİ', style: TextStyle(color: kBackgroundColor)),
+        title: const Text(
+          'ÜRÜN KATEGORİLERİMİZ',
+          style: TextStyle(color: kBackgroundColor),
+        ),
         backgroundColor: kPrimaryColor,
         iconTheme: const IconThemeData(color: kBackgroundColor),
       ),
@@ -23,40 +29,56 @@ class UrunlerMenuPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            const SizedBox(height: 10),
             const Text(
-              'Tüm Ürün Grupları',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: kAccentColor),
+              'ÜRÜN KATEGORİLERİMİZ',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: kPrimaryColor,
+              ),
             ),
-            const Divider(color: kPrimaryColor, thickness: 2, height: 30),
+            const SizedBox(height: 20),
 
+            // TRİGER KASNAKLAR
             _buildMenuButton(
               context,
-              title: 'KAPLİNLER',
+              title: 'Triger Kasnaklar',
+              imagePath: 'assets/triger_kasnaklar_ana.png',
+              targetPage: const TrigerKasnaklarPage(),
+            ),
+
+            // KAPLİNLER
+            _buildMenuButton(
+              context,
+              title: 'Kaplinler',
               imagePath: 'assets/kaplin_ana.png',
               targetPage: const KaplinlerPage(),
             ),
-            
+
+            // PİNYON DİŞLİLER
             _buildMenuButton(
               context,
-              title: 'PİNYON DİŞLİLER',
+              title: 'Pinyon Dişliler',
               imagePath: 'assets/pinyon_ana.png',
               targetPage: const DislilerPage(),
             ),
 
+            // MOTOR GERGİ RAYLARI
             _buildMenuButton(
               context,
-              title: 'TRİGER KASNAKLAR',
-              imagePath: 'assets/triger_kasnaklar_ana.png',
-              targetPage: const KaplinlerPage(), 
+              title: 'Motor Gergi Rayları',
+              imagePath: 'assets/motor_gergi_rayi.png',
+              targetPage: const MotorGergiRaylariPage(),
             ),
 
-            // 4. MOTOR GERGİ RAYLARI - KRİTİK BUTON
+            // KONİK KİLİTLER
             _buildMenuButton(
               context,
-              title: 'MOTOR GERGİ RAYLARI',
-              // KRİTİK ÇAĞRI: 'ı' yerine 'i' kullanılmalı.
-              imagePath: 'assets/motor_gergi_rayi.png', 
-              targetPage: const MotorGergiRaylariPage(), 
+              title: 'Konik Kilitler',
+              imagePath: 'assets/konik_kilit.png',
+              targetPage: const KonikKilitlerPage(),
             ),
           ],
         ),
@@ -74,22 +96,24 @@ class UrunlerMenuPage extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 20.0),
       child: Card(
         elevation: 6,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
         child: InkWell(
-          // BUTON TIKLAMASI BURADA GERÇEKLEŞİR
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => targetPage),
+              MaterialPageRoute(builder: (_) => targetPage),
             );
           },
           borderRadius: BorderRadius.circular(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Görsel Alanı (Bu kısım hatayı tetikleyebilir)
+              // Üst görsel
               ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(12)),
                 child: Container(
                   height: 150,
                   width: double.infinity,
@@ -97,18 +121,19 @@ class UrunlerMenuPage extends StatelessWidget {
                   child: Image.asset(
                     imagePath,
                     fit: BoxFit.contain,
-                    errorBuilder: (context, error, stackTrace) => Center(
-                      child: Text(
-                        'Resim Eksik: ${title}',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(color: Colors.red),
-                      ),
-                    ),
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Center(
+                        child: Icon(
+                          Icons.broken_image,
+                          size: 50,
+                          color: Colors.grey,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
-              
-              // Başlık Alanı
+              // Alt başlık
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Row(
@@ -122,7 +147,11 @@ class UrunlerMenuPage extends StatelessWidget {
                         color: kPrimaryColor,
                       ),
                     ),
-                    const Icon(Icons.arrow_forward_ios, color: kAccentColor, size: 18),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      color: kAccentColor,
+                      size: 18,
+                    ),
                   ],
                 ),
               ),

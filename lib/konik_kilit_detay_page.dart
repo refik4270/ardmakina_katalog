@@ -1,14 +1,14 @@
-// lib/motor_gergi_detay_page.dart
+// lib/konik_kilit_detay_page.dart
 
 import 'package:flutter/material.dart';
-import 'main.dart'; // Renkler için
+import 'main.dart';
 
-class MotorGergiDetayPage extends StatelessWidget {
+class KonikKilitDetayPage extends StatelessWidget {
   final String title;
   final String description;
   final String imagePath;
 
-  const MotorGergiDetayPage({
+  const KonikKilitDetayPage({
     super.key,
     required this.title,
     required this.description,
@@ -31,7 +31,7 @@ class MotorGergiDetayPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Görsel
+            // Ürün görseli
             ClipRRect(
               borderRadius: BorderRadius.circular(12.0),
               child: Container(
@@ -82,10 +82,10 @@ class MotorGergiDetayPage extends StatelessWidget {
             Center(
               child: ElevatedButton.icon(
                 onPressed: () {
-                  // İstersen burada PDF / katalog linki açılır
+                  // İstersen buraya konik kilit kataloğu PDF linki ekleyebiliriz
                 },
                 icon: const Icon(Icons.picture_as_pdf),
-                label: const Text('Katalog (PDF)'),
+                label: const Text('Konik kilit kataloğu (PDF)'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kPrimaryColor,
                   foregroundColor: kBackgroundColor,

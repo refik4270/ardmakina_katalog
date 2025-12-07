@@ -1,4 +1,4 @@
-// lib/main.dart - GÜNCEL KOD
+// lib/main.dart - SİZİN ORİJİNAL KODUNUZUN GÜNCELLENMİŞ HALİ
 
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -8,7 +8,12 @@ import 'disliler_page.dart';
 import 'kurumsal_page.dart';
 import 'urunler_menu_page.dart';
 import 'iletisim_page.dart';
-import 'kaplinler_page.dart'; // 👈 YENİ: Kaplinler sayfası
+import 'kaplinler_page.dart';
+
+// 👇 1. EKLEME: MOTOR GERGİ RAYLARI İÇİN
+import 'motor_gergi_raylari_page.dart';
+// 👇 2. EKLEME: KONİK KİLİTLER İÇİN
+import 'konik_kilitler_page.dart';
 
 // ------------------------------------------------------------------
 // RENK PALETİ VE SABİT DEĞERLER
@@ -47,7 +52,7 @@ class ArdMakinaApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: kPrimaryColor,
-        colorScheme: ColorScheme.light(
+        colorScheme: const ColorScheme.light(
           primary: kPrimaryColor,
           secondary: kAccentColor,
           background: kBackgroundColor,
@@ -55,7 +60,7 @@ class ArdMakinaApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: kBackgroundColor,
         appBarTheme: const AppBarTheme(
-          color: kPrimaryColor,
+          backgroundColor: kPrimaryColor,
           foregroundColor: kBackgroundColor,
           elevation: 4,
           iconTheme: IconThemeData(color: kBackgroundColor),
@@ -140,11 +145,13 @@ class _HomeScreenState extends State<HomeScreen> {
         _currentPage = 0;
       }
 
-      _pageController.animateToPage(
-        _currentPage,
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.easeIn,
-      );
+      if (_pageController.hasClients) {
+        _pageController.animateToPage(
+          _currentPage,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeIn,
+        );
+      }
     });
   }
 
@@ -279,7 +286,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.grey[300],
                     child: const Center(
                       child: Text(
-                        'Resim Yüklenemedi (assets/slider_x.png). Uzantıyı ve dosya adını kontrol edin.',
+                        'Resim Yüklenemedi. Uzantıyı ve dosya adını kontrol edin.',
                         textAlign: TextAlign.center,
                         style: TextStyle(color: kPrimaryColor),
                       ),
@@ -357,6 +364,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  // --- NAVİGASYON YÖNETİMİ ---
   void _handleNavigation(BuildContext context, String title) {
     // KASNAK GRUBU
     if (title == 'Triger Kasnaklar' ||
@@ -383,7 +391,21 @@ class _HomeScreenState extends State<HomeScreen> {
         MaterialPageRoute(builder: (context) => const DislilerPage()),
       );
     }
-    // Diğer tüm ürünler
+    // MOTOR GERGİ RAYLARI
+    else if (title == 'Motor Gergi Rayları') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const MotorGergiRaylariPage()),
+      );
+    }
+    // 🔴 YENİ: KONİK KİLİTLER
+    else if (title == 'Konik Kilitler') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const KonikKilitlerPage()),
+      );
+    }
+    // Diğer tüm ürünler (Henüz yapılmamış olanlar)
     else {
       _showUnderConstruction(context, title);
     }
