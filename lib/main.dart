@@ -1,4 +1,4 @@
-// lib/main.dart - SİZİN ORİJİNAL KODUNUZUN GÜNCELLENMİŞ HALİ
+// lib/main.dart
 
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -11,8 +11,8 @@ import 'iletisim_page.dart';
 import 'kaplinler_page.dart';
 import 'motor_gergi_raylari_page.dart';
 import 'konik_kilitler_page.dart';
-// 🔴 YENİ: BURÇLU V KASNAKLAR SAYFASI
 import 'burclu_v_kasnaklar_page.dart';
+import 'konik_burclar_page.dart';
 
 // ------------------------------------------------------------------
 // RENK PALETİ VE SABİT DEĞERLER
@@ -363,9 +363,9 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-    // --- NAVİGASYON YÖNETİMİ ---
+  // --- NAVİGASYON YÖNETİMİ ---
   void _handleNavigation(BuildContext context, String title) {
-    // KASNAK GRUBU (TRİGER VE DÜZ V KASNAKLAR)
+    // KASNAK GRUBU (Triger + düz V)
     if (title == 'Triger Kasnaklar' ||
         title == 'V Kasnaklar') {
       Navigator.push(
@@ -403,11 +403,18 @@ class _HomeScreenState extends State<HomeScreen> {
         MaterialPageRoute(builder: (context) => const KonikKilitlerPage()),
       );
     }
-    // 🔴 BURÇLU V KASNAKLAR – SPA/SPB/SPC/SPZ LİSTESİ BURAYA BAĞLI
+    // BURÇLU V KASNAKLAR
     else if (title == 'Burçlu V Kasnaklar') {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const BurcluVKasnaklarPage()),
+      );
+    }
+    // KONİK BURÇLAR
+    else if (title == 'Konik Burçlar') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const KonikBurclarPage()),
       );
     }
     // Diğer tüm ürünler (Henüz yapılmamış olanlar)
@@ -415,7 +422,6 @@ class _HomeScreenState extends State<HomeScreen> {
       _showUnderConstruction(context, title);
     }
   }
-
 
   Widget _buildCategoryButton(BuildContext context, String title) {
     return ElevatedButton(
