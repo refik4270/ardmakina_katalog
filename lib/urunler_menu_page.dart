@@ -9,7 +9,8 @@ import 'kaplinler_page.dart';
 import 'disliler_page.dart';
 import 'motor_gergi_raylari_page.dart';
 import 'konik_kilitler_page.dart';
-import 'konik_burclar_page.dart'; // KONİK BURÇLAR SAYFASI
+import 'konik_burclar_page.dart';
+import 'mil_kamalari_page.dart';
 
 class UrunlerMenuPage extends StatelessWidget {
   const UrunlerMenuPage({super.key});
@@ -88,6 +89,14 @@ class UrunlerMenuPage extends StatelessWidget {
               title: 'Konik Burçlar',
               imagePath: 'assets/kbr1.png',
               targetPage: const KonikBurclarPage(),
+            ),
+
+            // MİL KAMALARI
+            _buildMenuButton(
+              context,
+              title: 'Mil Kamaları',
+              imagePath: 'assets/kam1.png',
+              targetPage: const MilKamalariPage(),
             ),
           ],
         ),

@@ -13,6 +13,7 @@ import 'motor_gergi_raylari_page.dart';
 import 'konik_kilitler_page.dart';
 import 'burclu_v_kasnaklar_page.dart';
 import 'konik_burclar_page.dart';
+import 'mil_kamalari_page.dart'; // 🔴 YENİ: MİL KAMALARI SAYFASI
 
 // ------------------------------------------------------------------
 // RENK PALETİ VE SABİT DEĞERLER
@@ -415,6 +416,13 @@ class _HomeScreenState extends State<HomeScreen> {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const KonikBurclarPage()),
+      );
+    }
+    // 🔴 MİL KAMALARI
+    else if (title == 'Mil Kamaları') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const MilKamalariPage()),
       );
     }
     // Diğer tüm ürünler (Henüz yapılmamış olanlar)
