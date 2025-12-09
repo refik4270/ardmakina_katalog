@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'triger_kasnaklar_page.dart';
 import 'disliler_page.dart';
@@ -13,7 +14,9 @@ import 'motor_gergi_raylari_page.dart';
 import 'konik_kilitler_page.dart';
 import 'burclu_v_kasnaklar_page.dart';
 import 'konik_burclar_page.dart';
-import 'mil_kamalari_page.dart'; // 🔴 YENİ: MİL KAMALARI SAYFASI
+import 'mil_kamalari_page.dart';
+import 'kramayer_disli_page.dart';
+import 'zincir_disliler_page.dart';
 
 // ------------------------------------------------------------------
 // RENK PALETİ VE SABİT DEĞERLER
@@ -202,26 +205,28 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _launchUrl(BuildContext context, String actionType, String target) {
-    String message = '';
-    switch (actionType) {
-      case 'Web':
-        message = 'Web sitesi: $target açılıyor...';
-        break;
-      case 'Telefon':
-        message = 'Telefon: $target aranıyor...';
-        break;
-      case 'Mail':
-        message = 'Mail gönderme ekranı: $target için açılıyor...';
-        break;
+  // 📲 Telefon / Mail / Web için gerçek yönlendirme
+  Future<void> _launchUrl(
+      BuildContext context, String actionType, String target) async {
+    Uri uri;
+
+    if (actionType == 'Telefon') {
+      uri = Uri(scheme: 'tel', path: target);
+    } else if (actionType == 'Mail') {
+      uri = Uri(scheme: 'mailto', path: target);
+    } else {
+      uri = Uri.parse(target);
     }
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: kAccentColor,
-        duration: const Duration(seconds: 2),
-      ),
-    );
+
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Bağlantı açılamadı.'),
+          backgroundColor: kPrimaryColor,
+          duration: const Duration(seconds: 2),
+        ),
+      );
+    }
   }
 
   @override
@@ -331,17 +336,20 @@ class _HomeScreenState extends State<HomeScreen> {
           const Spacer(),
           IconButton(
             icon: const Icon(Icons.language, color: kBackgroundColor),
-            onPressed: () => _launchUrl(context, 'Web', kWebAddress),
+            onPressed: () =>
+                _launchUrl(context, 'Web', kWebAddress),
             tooltip: 'Web Sitesi: $kWebAddress',
           ),
           IconButton(
             icon: const Icon(Icons.mail, color: kBackgroundColor),
-            onPressed: () => _launchUrl(context, 'Mail', kEmailAddress),
+            onPressed: () =>
+                _launchUrl(context, 'Mail', kEmailAddress),
             tooltip: 'E-Posta: $kEmailAddress',
           ),
           IconButton(
             icon: const Icon(Icons.phone, color: kBackgroundColor),
-            onPressed: () => _launchUrl(context, 'Telefon', kPhoneNumber),
+            onPressed: () =>
+                _launchUrl(context, 'Telefon', kPhoneNumber),
             tooltip: 'Telefon: $kPhoneNumber',
           ),
         ],
@@ -367,8 +375,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // --- NAVİGASYON YÖNETİMİ ---
   void _handleNavigation(BuildContext context, String title) {
     // KASNAK GRUBU (Triger + düz V)
-    if (title == 'Triger Kasnaklar' ||
-        title == 'V Kasnaklar') {
+    if (title == 'Triger Kasnaklar' || title == 'V Kasnaklar') {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const TrigerKasnaklarPage()),
@@ -381,13 +388,26 @@ class _HomeScreenState extends State<HomeScreen> {
         MaterialPageRoute(builder: (context) => const KaplinlerPage()),
       );
     }
-    // DİŞLİ GRUBU
-    else if (title == 'Pinyon Dişliler' ||
-        title == 'Kramayer Dişliler' ||
-        title == 'Zincir Dişliler') {
+    // PİNYON DİŞLİLER
+    else if (title == 'Pinyon Dişliler') {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const DislilerPage()),
+      );
+    }
+    // ZİNCİR DİŞLİLER
+    else if (title == 'Zincir Dişliler') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const ZincirDislilerPage()),
+      );
+    }
+    // KRAMAYER DİŞLİLER
+    else if (title == 'Kramayer Dişliler') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const KramayerDisliPage()),
       );
     }
     // MOTOR GERGİ RAYLARI
@@ -418,14 +438,14 @@ class _HomeScreenState extends State<HomeScreen> {
         MaterialPageRoute(builder: (context) => const KonikBurclarPage()),
       );
     }
-    // 🔴 MİL KAMALARI
+    // MİL KAMALARI
     else if (title == 'Mil Kamaları') {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const MilKamalariPage()),
       );
     }
-    // Diğer tüm ürünler (Henüz yapılmamış olanlar)
+    // Diğer tüm ürünler (Henüz yapılmamış olanlar veya Zincirler, Rulman vb.)
     else {
       _showUnderConstruction(context, title);
     }

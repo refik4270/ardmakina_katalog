@@ -11,6 +11,8 @@ import 'motor_gergi_raylari_page.dart';
 import 'konik_kilitler_page.dart';
 import 'konik_burclar_page.dart';
 import 'mil_kamalari_page.dart';
+import 'kramayer_disli_page.dart';
+import 'zincir_disliler_page.dart'; // 🔴 YENİ: Zincir Dişliler sayfası
 
 class UrunlerMenuPage extends StatelessWidget {
   const UrunlerMenuPage({super.key});
@@ -97,6 +99,22 @@ class UrunlerMenuPage extends StatelessWidget {
               title: 'Mil Kamaları',
               imagePath: 'assets/kam1.png',
               targetPage: const MilKamalariPage(),
+            ),
+
+            // KRAMAYER DİŞLİLER
+            _buildMenuButton(
+              context,
+              title: 'Kramayer Dişliler',
+              imagePath: 'assets/kramayer_ana.png',
+              targetPage: const KramayerDisliPage(),
+            ),
+
+            // 🔴 ZİNCİR DİŞLİLER (YENİ)
+            _buildMenuButton(
+              context,
+              title: 'Zincir Dişliler',
+              imagePath: 'assets/zincir_ana.png',
+              targetPage: const ZincirDislilerPage(),
             ),
           ],
         ),
