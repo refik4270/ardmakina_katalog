@@ -17,6 +17,7 @@ import 'konik_burclar_page.dart';
 import 'mil_kamalari_page.dart';
 import 'kramayer_disli_page.dart';
 import 'zincir_disliler_page.dart';
+import 'zincirler_page.dart';
 
 // ------------------------------------------------------------------
 // RENK PALETİ VE SABİT DEĞERLER
@@ -336,20 +337,17 @@ class _HomeScreenState extends State<HomeScreen> {
           const Spacer(),
           IconButton(
             icon: const Icon(Icons.language, color: kBackgroundColor),
-            onPressed: () =>
-                _launchUrl(context, 'Web', kWebAddress),
+            onPressed: () => _launchUrl(context, 'Web', kWebAddress),
             tooltip: 'Web Sitesi: $kWebAddress',
           ),
           IconButton(
             icon: const Icon(Icons.mail, color: kBackgroundColor),
-            onPressed: () =>
-                _launchUrl(context, 'Mail', kEmailAddress),
+            onPressed: () => _launchUrl(context, 'Mail', kEmailAddress),
             tooltip: 'E-Posta: $kEmailAddress',
           ),
           IconButton(
             icon: const Icon(Icons.phone, color: kBackgroundColor),
-            onPressed: () =>
-                _launchUrl(context, 'Telefon', kPhoneNumber),
+            onPressed: () => _launchUrl(context, 'Telefon', kPhoneNumber),
             tooltip: 'Telefon: $kPhoneNumber',
           ),
         ],
@@ -403,6 +401,14 @@ class _HomeScreenState extends State<HomeScreen> {
             builder: (context) => const ZincirDislilerPage()),
       );
     }
+    // ZİNCİRLER
+    else if (title == 'Zincirler') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const ZincirlerPage()),
+      );
+    }
     // KRAMAYER DİŞLİLER
     else if (title == 'Kramayer Dişliler') {
       Navigator.push(
@@ -445,7 +451,7 @@ class _HomeScreenState extends State<HomeScreen> {
         MaterialPageRoute(builder: (context) => const MilKamalariPage()),
       );
     }
-    // Diğer tüm ürünler (Henüz yapılmamış olanlar veya Zincirler, Rulman vb.)
+    // Diğer tüm ürünler (Henüz yapılmamış olanlar veya Rulman vb.)
     else {
       _showUnderConstruction(context, title);
     }

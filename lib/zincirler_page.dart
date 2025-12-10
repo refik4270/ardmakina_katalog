@@ -1,11 +1,11 @@
-// lib/zincir_disliler_page.dart
+// lib/zincirler_page.dart
 
 import 'package:flutter/material.dart';
 import 'main.dart';
-import 'zincir_disli_detay_page.dart';
+import 'zincir_detay_page.dart';
 
-class ZincirDislilerPage extends StatelessWidget {
-  const ZincirDislilerPage({super.key});
+class ZincirlerPage extends StatelessWidget {
+  const ZincirlerPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class ZincirDislilerPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Zincir Dişliler',
+          'Zincirler',
           style: TextStyle(color: kBackgroundColor),
         ),
         backgroundColor: kPrimaryColor,
@@ -50,12 +50,12 @@ class ZincirDislilerPage extends StatelessWidget {
                   border: Border.all(color: kAccentColor, width: 1),
                 ),
                 child: Image.asset(
-                  'assets/zincird_ana.png',
+                  'assets/zincir_ana.png',
                   fit: BoxFit.contain,
                   errorBuilder: (context, error, stackTrace) {
                     return const Center(
                       child: Text(
-                        'zincird_ana.png bulunamadı',
+                        'zincir_ana.png bulunamadı',
                         style: TextStyle(color: kPrimaryColor),
                       ),
                     );
@@ -66,13 +66,13 @@ class ZincirDislilerPage extends StatelessWidget {
 
             const SizedBox(height: 20),
 
+            // AÇIKLAMA METNİ
             const Text(
-              'Eksenler arası mesafenin uzun olduğu ve aynı düzlemde dönme hareketin '
-              'aktarılması gereken yerlerde zincir dişliler kullanılır.\n\n'
-              'Zincir dişlilere yüksek tork uygulanabilir ancak yüksek devirlerde '
-              'kullanılamazlar ve çok gürültülüdürler. Bunların bir diğer dezavantajı '
-              'gevşek tarafta zincirin sarkmasıdır. Sarkmayı gidermek için genellikle '
-              'gerdirme dişlileri kullanılır.',
+              'Endüstriyel alanda kullanılan zincirler 5 parçadan oluşmaktadır. Makara, pim, '
+              'makara bağlantı plakası, pim bağlantı plakası ve burçtur. Kullanılacak zincir '
+              'çekeceği yüke göre tercih edilmelidir. Zincirler tek sıra, çift sıra ve üç sıra '
+              'olarak kullanılabilmektedir. Bunların dışında özel amaçlı zincirlerde mevcuttur. '
+              '(Pimli zincir, kulaklı zincir vb.) ',
               style: TextStyle(fontSize: 16, height: 1.5),
               textAlign: TextAlign.center,
             ),
@@ -80,7 +80,7 @@ class ZincirDislilerPage extends StatelessWidget {
             const SizedBox(height: 24),
 
             const Text(
-              'Zincir Dişli Tipleri',
+              'Zincir Tipleri',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -90,6 +90,7 @@ class ZincirDislilerPage extends StatelessWidget {
 
             const SizedBox(height: 12),
 
+            // ÇEŞİTLER LİSTESİ
             ...zincirTipleri.map(
               (code) => Padding(
                 padding: const EdgeInsets.only(bottom: 10),
@@ -117,7 +118,7 @@ class ZincirDislilerPage extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => ZincirDisliDetayPage(code: code),
+            builder: (_) => ZincirDetayPage(code: code),
           ),
         );
       },

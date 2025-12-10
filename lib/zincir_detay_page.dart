@@ -1,12 +1,12 @@
-// lib/zincir_disli_detay_page.dart
+// lib/zincir_detay_page.dart
 
 import 'package:flutter/material.dart';
 import 'main.dart';
 
-class ZincirDisliDetayPage extends StatelessWidget {
+class ZincirDetayPage extends StatelessWidget {
   final String code; // Örn: 06B, 08B, 10B...
 
-  const ZincirDisliDetayPage({
+  const ZincirDetayPage({
     super.key,
     required this.code,
   });
@@ -16,7 +16,7 @@ class ZincirDisliDetayPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Zincir Dişliler - $code',
+          'Zincirler - $code',
           style: const TextStyle(color: kBackgroundColor),
         ),
         backgroundColor: kPrimaryColor,
@@ -38,12 +38,12 @@ class ZincirDisliDetayPage extends StatelessWidget {
                   border: Border.all(color: kAccentColor, width: 1),
                 ),
                 child: Image.asset(
-                  'assets/zncd.png',
+                  'assets/zncr1.png',
                   fit: BoxFit.contain,
                   errorBuilder: (context, error, stackTrace) {
                     return const Center(
                       child: Text(
-                        'zncd.png bulunamadı',
+                        'zncr1.png bulunamadı',
                         style: TextStyle(color: kPrimaryColor),
                       ),
                     );
@@ -55,10 +55,9 @@ class ZincirDisliDetayPage extends StatelessWidget {
             const SizedBox(height: 20),
 
             const Text(
-              'Zincir dişlilere yüksek tork uygulanabilir ancak yüksek devirlerde '
-              'kullanılamazlar ve çok gürültülüdürler. Bunların bir diğer dezavantajı '
-              'gevşek tarafta zincirin sarkmasıdır. Sarkmayı gidermek için genellikle '
-              'gerdirme dişlileri kullanılır.',
+              'Bu zincirler, zorlu çalışma koşullarında bile üstün dayanıklılık ve güvenilirlik '
+              'sunarak tahrik ve konveyör uygulamalarınızın verimliliğini en üst düzeye çıkarır. '
+              'Projeleriniz için ideal, uzun ömürlü çözümlerimizle tanışın.',
               style: TextStyle(fontSize: 16, height: 1.5),
               textAlign: TextAlign.center,
             ),
@@ -83,7 +82,7 @@ class ZincirDisliDetayPage extends StatelessWidget {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text(
-                        'Zincir dişli kataloğu PDF bağlantısı henüz eklenmedi.',
+                        'Zincir kataloğu PDF bağlantısı henüz eklenmedi.',
                       ),
                       duration: Duration(seconds: 2),
                     ),
