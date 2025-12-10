@@ -14,6 +14,8 @@ import 'mil_kamalari_page.dart';
 import 'kramayer_disli_page.dart';
 import 'zincir_disliler_page.dart';
 import 'zincirler_page.dart';
+import 'yatakli_rulmanlar_page.dart';
+import 'rulman_yataklari_page.dart';
 
 class UrunlerMenuPage extends StatelessWidget {
   const UrunlerMenuPage({super.key});
@@ -124,6 +126,22 @@ class UrunlerMenuPage extends StatelessWidget {
               title: 'Zincirler',
               imagePath: 'assets/zincir_ana.png',
               targetPage: const ZincirlerPage(),
+            ),
+
+            // RULMAN YATAKLARI
+            _buildMenuButton(
+              context,
+              title: 'Rulman Yatakları',
+              imagePath: 'assets/rulman_yatak_ana.png',
+              targetPage: const RulmanYataklariPage(),
+            ),
+
+            // YATAKLI RULMANLAR
+            _buildMenuButton(
+              context,
+              title: 'Yataklı Rulmanlar',
+              imagePath: 'assets/yataklı_ana.png',
+              targetPage: const YatakliRulmanlarPage(),
             ),
           ],
         ),

@@ -18,6 +18,8 @@ import 'mil_kamalari_page.dart';
 import 'kramayer_disli_page.dart';
 import 'zincir_disliler_page.dart';
 import 'zincirler_page.dart';
+import 'yatakli_rulmanlar_page.dart';
+import 'rulman_yataklari_page.dart';
 
 // ------------------------------------------------------------------
 // RENK PALETİ VE SABİT DEĞERLER
@@ -451,7 +453,23 @@ class _HomeScreenState extends State<HomeScreen> {
         MaterialPageRoute(builder: (context) => const MilKamalariPage()),
       );
     }
-    // Diğer tüm ürünler (Henüz yapılmamış olanlar veya Rulman vb.)
+    // RULMAN YATAKLARI
+    else if (title == 'Rulman Yatakları') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const RulmanYataklariPage()),
+      );
+    }
+    // YATAKLI RULMANLAR
+    else if (title == 'Yataklı Rulmanlar') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const YatakliRulmanlarPage()),
+      );
+    }
+    // Diğer tüm ürünler (Henüz yapılmamış olanlar)
     else {
       _showUnderConstruction(context, title);
     }
