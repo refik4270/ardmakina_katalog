@@ -1,16 +1,19 @@
 name: ardmakina_katalog
-description: "ARD Makina Katalog Uygulamasi"
-publish_to: 'none'
+description: ARD Makina ürün kataloğu mobil uygulaması.
+publish_to: 'none' # Bu projeyi pub.dev'e yayınlamıyoruz.
+
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.2.3 <4.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
+
   cupertino_icons: ^1.0.6
   url_launcher: ^6.3.0
+  pdfx: ^2.6.0
 
 dev_dependencies:
   flutter_test:
